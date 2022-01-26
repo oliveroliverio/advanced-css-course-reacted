@@ -1,0 +1,181 @@
+/*
+cross browser reset, so that every browser renders this the exact same way
+no need anymore, browsers got better.  use universal selector: *
+
+*/
+
+/*
+
+- for reset, set margin and padding to zero.  Here we start clean where browser doesn't add
+margins or paddings to elements
+- box-sizing: borderbox.  This prevents browser from adding additional to width/height of element
+
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+- set overall font properties of entire component
+- done here because fonts are inherited
+- all child elements of body will inherit the parent
+- body is for text elements
+
+- add padding to body
+*/
+
+.body {
+  font-family: sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  padding: 30px;
+}
+
+/* Everything above is a basic reset  */
+
+/*
+- height: 95vh. Viewport height
+- background-size: cover.  Tries to fit entire image in area
+- background-position: top.  This makes sure when user resizes window, top of image sticks
+- add linear gradient to background image
+
+- clip-path: polygon(<coordinates>)
+- be sure to checkout https: //bennettfeely.com/clippy/ for copying and pasting polygon values
+*/
+
+.header {
+  height: 95vh;
+  /* background-image: url('/Users/oliveroliverio/Git/WD-Udemy_Advanced-CSS-and-SAS/advanced-css-course-reacted/Natours/starter/img/hero.jpg'); */
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(82, 196, 72, 0.605),
+    rgba(50, 55, 193, 0.529)),
+    url('/Users/oliveroliverio/Git/WD-Udemy_Advanced-CSS-and-SAS/advanced-css-course-reacted/src/img/hero.jpg');
+  background-size: cover;
+  background-position: top;
+  /* clip-path: polygon(0 0, 100% 0,  100% 80%, 0 100%); */
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  position : relative;
+}
+
+
+
+/*
+- logo-box is the box around the logo
+- logo is the img itself
+- note, top/bottom: 40px is relative to parent element (in this case, Header component)
+- therefore you need to add "position: relative" in the Header portion
+
+- specify just the height of the .logo and the width will scale accordingly
+*/
+.logo-box {
+  position: absolute;
+  top: 60px;
+  bottom: 60px;
+  left: 30px ;
+}
+
+.logo {
+  height: 35px;
+}
+
+/* .logo:hover{
+  animation: moveInRight 1s ease-out;
+} */
+
+/*
+- when positioning boxes top/left: 50% is that of the element, you need to do a 2nd step,
+- transform: translate(-50%, -50%)
+*/
+
+.text-box {
+  position: absolute;
+  align-content: center;
+  top: 40%;
+  left: 50%;
+  /* background-color: red; */
+  transform: translate(-50%, -50%)
+
+
+}
+
+
+
+/*
+- display: block.  this allows text elements to expand according to the block they're in
+*/
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+
+  backface-visibility: hidden;
+}
+
+.heading-primary-main {
+  display: block;
+  font-size: 80px;
+  font-weight: 400;
+  letter-spacing: 35px;
+
+  animation-name: moveInLeft;
+  animation-duration: .9s;
+  /* animation-timing-function: ease-in; */
+  animation-timing-function: ease-out;
+  /* animation-timing-function: ease-in-out; */
+  /* animation-delay: 0.5s; */
+  /* animation-iteration-count: 3; */
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 15.5px;
+
+  animation-name: moveInRight;
+  animation-duration: 0.9s;
+ animation-timing-function: ease-out;
+ }
+
+
+/*
+- for browser performace, it's best to animate only opacity, and transform property
+*/
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) rotate(-50deg)
+  }
+  60% {
+    transform: rotate(120deg)
+  }
+  80% {
+    transform: translateX(10px)
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px)
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px)
+  }
+  80% {
+    transform: translateX(-10px)
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0)
+  }
+}
+
+
+
+
